@@ -1,4 +1,5 @@
 const alumnosJson = require('../Models/alumnos.json')
+const fs = require('fs')
 
 const getAlumnos = (req, res) => {
     res.json(alumnosJson)
@@ -8,7 +9,7 @@ const addAlumno = (req, res) => {
     // desestructuración
     let materias = []
 
-    const {boleta, name,  email, materia, calificacion, profesor, horario} = req.body 
+    let {boleta, name,  email, materia, calificacion, profesor, horario} = req.body 
 
     let materiaObj = {materia,calificacion,profesor,horario}
     materias.push(materiaObj)
@@ -21,7 +22,7 @@ const addAlumno = (req, res) => {
     res.json(alumnosJson)
 }
 
-const deleteAlumno =  (req, res) => {
+const updateAlumno =  (req, res) => {
 
     const index = alumnosJson.alumnos.findIndex(alumno => alumno.boleta === req.body.boleta)
     console.log(index);
@@ -34,15 +35,28 @@ const deleteAlumno =  (req, res) => {
     }
 }
 
-function updateAlumno (req, res) {
-    const index = alumnosJson.alumnos.findIndex(alumno => alumno.boleta === req.body.boleta)
-    console.log(index);
+function deleteAlumno(req, res) {
+    const id = req.params.id
+    console.log(id);
 
-    if (index >= 0) {
-        alumnosJson.alumnos.splice(index, 1)
-        return res.json(alumnosJson)
+    let alumnosFilter = alumnosJson.alumnos.filter(alumno => alumno.id !== id)
+    
+    // Convertir el objeto JSON modificado a una cadena JSON
+  const nuevoContenidoJson = JSON.stringify(alumnosFilter, null, 2);
+
+  // Escribir el objeto JSON modificado nuevamente en el archivo
+//   fs.writeFile(alumnosJson, alumnosFilter, 'utf8', (error) => {
+//     if (error) {
+//       console.error('Error al escribir en el archivo:', error);
+//       return;
+//     }
+//     console.log('Archivo JSON modificado exitosamente.');
+//   });
+
+    if (alumnosFilter.length >= 0) {
+        return res.json({ status: true, alumnosFilter: alumnosFilter })
     } else  {
-       return res.json({message:"No existe el alumno"})
+       return res.json({ status: false })
     }
 }
 

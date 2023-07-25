@@ -9,8 +9,8 @@ route.get('/obtenerAlumnos', controller.getAlumnos)
 
 route.post('/agregarAlumno', controller.addAlumno)
 
-route.patch('/actualizarAlumno', controller.deleteAlumno)
+route.patch('/actualizarAlumno', controller.updateAlumno)
 
-route.delete('/borrarAlumno', controller.updateAlumno)
+route.delete('/borrarAlumno/:id', controller.deleteAlumno)
 
 module.exports = route
