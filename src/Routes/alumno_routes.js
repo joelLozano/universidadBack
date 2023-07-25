@@ -3,7 +3,10 @@ const controller = require('../Controllers/alumno_controller')
 
 const route = express.Router()
 
-// Aqui debo poner todo mi CRUD de ALumnos  
+// Aqui debo poner todo mi CRUD de ALumnos
+route.get('/', (req, res) => {
+    res.send('Hola desde la ruta de alumnos')
+});
 
 route.get('/obtenerAlumnos', controller.getAlumnos)
 

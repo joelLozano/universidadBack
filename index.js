@@ -19,6 +19,9 @@ app.use(profesorRoutes)
 app.use(materiasRoutes)
 
 
-app.listen(3000, () => {
+// add port env
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
     console.log('Servidor corriendo en el puerto 3000 🚀')
 } )
