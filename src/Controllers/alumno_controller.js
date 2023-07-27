@@ -5,6 +5,12 @@ const getAlumnos = (req, res) => {
     res.json(alumnosJson)
 }
 
+const infoQR = (req, res) => {
+    const name = req.params.name
+
+    res.json({message: `Hola ${name}`})
+}
+
 const addAlumno = (req, res) => {
     // desestructuración
     let materias = []
@@ -60,4 +66,4 @@ function deleteAlumno(req, res) {
     }
 }
 
-module.exports = {getAlumnos, addAlumno, deleteAlumno, updateAlumno}
+module.exports = {getAlumnos, addAlumno, deleteAlumno, updateAlumno, infoQR}

@@ -8,6 +8,8 @@ route.get('/', (req, res) => {
     res.send('Hola desde la ruta de alumnos')
 });
 
+route.get('/info/:name', controller.infoQR)
+
 route.get('/obtenerAlumnos', controller.getAlumnos)
 
 route.post('/agregarAlumno', controller.addAlumno)
