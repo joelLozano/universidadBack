@@ -7,7 +7,6 @@ const getAlumnos = (req, res) => {
 
 const infoQR = (req, res) => {
     const name = req.params.name
-
     res.json({message: `Hola ${name}`})
 }
 
